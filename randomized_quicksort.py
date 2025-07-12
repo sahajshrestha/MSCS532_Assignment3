@@ -7,7 +7,7 @@ def randomized_quicksort(arr, low, high):
         low, high = stack.pop()
         if low < high:
             p = randomized_partition(arr, low, high)
-            # Push larger subarray first for smaller stack size (optional)
+            # Push larger subarray first for smaller stack size
             if p - 1 - low > high - (p + 1):
                 stack.append((low, p - 1))
                 stack.append((p + 1, high))
