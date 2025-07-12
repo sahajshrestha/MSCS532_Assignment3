@@ -1,8 +1,13 @@
 def deterministic_quicksort(arr, low, high):
-    if low < high:
+    while low < high:
         p = partition(arr, low, high)
-        deterministic_quicksort(arr, low, p - 1)
-        deterministic_quicksort(arr, p + 1, high)
+        # Tail call optimization to avoid deep recursion
+        if p - low < high - p:
+            deterministic_quicksort(arr, low, p - 1)
+            low = p + 1
+        else:
+            deterministic_quicksort(arr, p + 1, high)
+            high = p - 1
 
 def partition(arr, low, high):
     pivot = arr[low]
